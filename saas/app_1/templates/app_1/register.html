@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/twitter-bootstrap/3.4.1/css/bootstrap.css">
+    <style>
+        .account{
+            width: 600px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+
+<div class="account">
+<h1 style="text-align: center">注册</h1>
+    <form action="" method="POST">
+    {% csrf_token %}
+        {% for foo in form %}
+            {% if foo.name == 'code' %}
+                <div class="form-group">
+                    <label for="{{ foo.id_for_label }}">{{ foo.label }}</label>
+                    <div class="clearfix">
+                    <div class="col-md-6" style="padding-left: 0;">{{ foo }}</div>
+                    <div class="col-md-6"><input type="button" class="btn btn-default" value="点击获取验证码" id="Yzm"></div>
+                    </div>
+                </div>
+            {% else %}
+                <div class="form-group">
+                    <label for="{{ foo.id_for_label }}">{{ foo.label }}</label>
+                    {{ foo }}
+                </div>
+            {% endif %}
+        {% endfor %}
+        {{ error }}
+        <button type="submit" class="btn btn-primary">注册</button>
+    </form>
+</div>
+<script>
+    $('#Yzm').click(function () {
+        var mobile_phone = $('input[name="mobile_phone"]').val();
+        var path = $(this).attr('url');
+        $.ajax({
+            url:'/mobile_phone/',
+            data:{
+                mobile_phone:mobile_phone,
+                path:path
+            },
+            success:(data) =>{
+                if (data.status){
+                    alert('验证码已发送');
+                    if (data.num ===$('input[name="code"]').val()){}
+                }
+            }
+        })
+        
+    })
+</script>
+</body>
+</html>
+
