@@ -199,7 +199,7 @@ def file_post(request, project_id):
             'name': instance.name,
             'file_size': instance.file_size,
             'username': instance.update_user.username,
-            'datetime': instance.update_datetime.strftime("%Y年%m月%d日 %H:%M"),
+            'datetime': instance.update_datetime.strftime("%Y-%m-%d %H:%M"),
             'download_url': reverse('file_download', kwargs={"project_id": project_id, 'file_id': instance.id})
             # 'file_type': instance.get_file_type_display()
         }

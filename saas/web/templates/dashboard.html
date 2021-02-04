@@ -223,7 +223,7 @@
                 },
                 yAxis: {
                     title: {
-                        text: '问题数量' // Y周文本提示
+                        text: '问题人数' // Y周文本提示
                     }
                 },
                 xAxis: {
@@ -263,7 +263,7 @@
                 success: function (res) {
                     config.series[0].data = res.data;
                     var chart = Highcharts.chart('chart', config);
-                }
+                },
             });
 
 
